@@ -20,8 +20,8 @@ public class RestOrderController {
         Order order = new Order();
         order.setDescriptionOrder(description);
         order = service.save(order);
-        return order.getId() != 0 ? ResponseEntity.ok("Номер вашего заказа" + order.getId()) :
-                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        return order.getId() != 0 ? ResponseEntity.ok("Номер вашего заказа" + order.getId())
+                : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
     @GetMapping("/findOrderById/{orderId}")
