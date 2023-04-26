@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface OrderRepository
         extends CrudRepository<Order, Integer> {
-    Order save(Order order);
+    Optional<Order> save(Order order);
     @Query(value = "select o.id, o.description, p.id, p.name, p.description\n"
             + "from order_products as op\n"
             + "left join table_order as o\n"

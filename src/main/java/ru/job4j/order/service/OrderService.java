@@ -12,7 +12,7 @@ import java.util.Optional;
 public class OrderService {
     private final OrderRepository orderRepository;
 
-    public Order save(Order order) {
+    public Optional<Order> save(Order order) {
         return orderRepository.save(order);
     }
 

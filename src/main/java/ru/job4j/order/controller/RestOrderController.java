@@ -19,8 +19,8 @@ public class RestOrderController {
     public ResponseEntity<String> newOrder(@RequestBody String description) {
         Order order = new Order();
         order.setDescriptionOrder(description);
-        order = service.save(order);
-        return order.getId() != 0 ? ResponseEntity.ok("Номер вашего заказа" + order.getId())
+        Optional<Order> opt = service.save(order);
+        return opt.isPresent() ? ResponseEntity.ok("Номер вашего заказа" + order.getId())
                 : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
@@ -29,7 +29,4 @@ public class RestOrderController {
         Optional<Order> order = service.findById(id);
         return order.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
-
-
-
 }
