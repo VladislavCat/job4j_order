@@ -13,7 +13,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
     public Optional<Order> save(Order order) {
-        return orderRepository.save(order);
+        return Optional.of(orderRepository.save(order));
     }
 
     public Optional<Order> findById(int id) {
