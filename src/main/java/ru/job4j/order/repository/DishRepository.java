@@ -23,7 +23,6 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class DishRepository {
     private final String url = "localhost:8080/dish";
-    @Autowired
     private final RestTemplate client = new RestTemplate();
 
     public List<Product> findAllProductByOrder(Order order) {
