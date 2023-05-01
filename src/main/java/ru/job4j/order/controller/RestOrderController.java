@@ -24,8 +24,10 @@ public class RestOrderController {
         Order order = new Order();
         order.setDescriptionOrder(description);
         Optional<Order> opt = service.save(order);
-        return opt.isPresent() ? ResponseEntity.ok("Номер вашего заказа" + order.getId())
-                : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        if (opt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return ResponseEntity.ok("Номер вашего заказа" + order.getId());
     }
 
     @GetMapping("/findOrderById/{orderId}")
