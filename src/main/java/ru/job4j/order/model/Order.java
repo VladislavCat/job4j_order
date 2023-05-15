@@ -18,6 +18,8 @@ public class Order {
     @Column(name = "id", nullable = false)
     private int id;
     private String descriptionOrder;
+    @Column(name = "status_order")
+    private String statusOrder;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "order_products",
         joinColumns = @JoinColumn (name = "id_order"),

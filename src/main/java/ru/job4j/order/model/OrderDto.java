@@ -9,6 +9,7 @@ import java.util.Set;
 public class OrderDto implements Serializable {
     private final int id;
     private final String descriptionOrder;
+    private final String statusOrder;
     private final Set<ProductDto> set;
 
     @Data

@@ -24,7 +24,6 @@ public class RestOrderController {
     private final OrderService service;
     private final DishService dishService;
     private final KafkaTemplate<Object, Order> kafkaTemplate;
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping("/createNewOrder")
     public ResponseEntity<String> newOrder(@RequestBody Map<String, String> body) throws JsonProcessingException {
@@ -36,6 +35,7 @@ public class RestOrderController {
         }
         kafkaTemplate.send("job4j_orders",
                 opt.get());
+        kafkaTemplate.send("cooked_order", order);
         return ResponseEntity.ok("Номер вашего заказа " + order.getId());
     }
 
@@ -52,7 +52,7 @@ public class RestOrderController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         OrderDto orderDto = new OrderDto(order.get().getId(),
-                order.get().getDescriptionOrder(), new HashSet<>(dishService.findProductsByOrder(order.get())));
+                order.get().getDescriptionOrder(), order.get().getStatusOrder(), new HashSet<>(dishService.findProductsByOrder(order.get())));
         return ResponseEntity.ok(orderDto);
     }
 }
