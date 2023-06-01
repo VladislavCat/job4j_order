@@ -1,13 +1,11 @@
 package ru.job4j.order.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
-import ru.job4j.order.Main;
 import ru.job4j.order.model.Order;
 import ru.job4j.order.model.OrderDto;
 import ru.job4j.order.service.DishService;
@@ -33,8 +31,7 @@ public class RestOrderController {
         if (opt.isEmpty()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        kafkaTemplate.send("job4j_orders",
-                opt.get());
+        kafkaTemplate.send("job4j_orders", opt.get());
         kafkaTemplate.send("cooked_order", order);
         return ResponseEntity.ok("Номер вашего заказа " + order.getId());
     }
