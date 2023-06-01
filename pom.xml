@@ -161,7 +161,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <finalName>order</finalName>
-                    <mainClass>ru.job4j.tracker.StartUI</mainClass>
+                    <mainClass>ru.job4j.order.Main</mainClass>
                 </configuration>
                 <executions>
                     <execution>
