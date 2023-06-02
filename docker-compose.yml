@@ -6,7 +6,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=pass
       - POSTGRES_USER=postgres
-      - POSTGRES_DB=orders
+      - POSTGRES_DB=dishes
       - PGDATA=/var/lib/postgresql/data
     volumes:
       - ./db/shortcut/data:/var/lib/postgresql/data
@@ -17,7 +17,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=pass
       - POSTGRES_USER=postgres
-      - POSTGRES_DB=dishes
+      - POSTGRES_DB=orders
       - PGDATA=/var/lib/postgresql/data
     volumes:
       - ./db/shortcut/data:/var/lib/postgresql/data
@@ -28,7 +28,7 @@ services:
     environment:
       - JDBC_URL=jdbc:postgresql://db1:5432/dishes
       - JDBC_USERNAME=postgres
-      - JDBC_PASSWORD=password
+      - JDBC_PASSWORD=pass
       - JDBC_DRIVER=org.postgresql.Driver
     depends_on:
       - db1
@@ -37,7 +37,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-        - JDBC_URL=jdbc:postgresql://db2:5432/order
+        - JDBC_URL=jdbc:postgresql://db2:5432/orders
         - JDBC_USERNAME=postgres
         - JDBC_PASSWORD=pass
         - JDBC_DRIVER=org.postgresql.Driver
