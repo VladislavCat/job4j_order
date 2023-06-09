@@ -41,6 +41,6 @@ services:
         - JDBC_USERNAME=postgres
         - JDBC_PASSWORD=pass
         - JDBC_DRIVER=org.postgresql.Driver
-    container_name: job4j_tracker
+    container_name: shortcut
     depends_on:
         - db2
